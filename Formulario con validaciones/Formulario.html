@@ -1,0 +1,59 @@
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Formulario de Clientes</title>
+  <link rel="stylesheet" href="Estilo.css">
+</head>
+<body>
+  <div class="contenedor">
+    <!-- Lado izquierdo -->
+    <div class="mensaje">
+      <h1>¡Bienvenido a <strong>SHARK</strong>! </h1>
+      <p>Por favor, complete todos los campos con sus datos personales y acceda
+        a la comunidad bancaria mas <strong>EXCLUSIVA</strong>.
+      </p>
+    </div>
+
+    <!-- Lado derecho -->
+    <form id="formulario">
+      <h2>Registro de Cliente</h2>
+
+      <label for="cedula">Cédula:</label>
+      <input type="text" id="cedula" name="cedula" maxlength="10">
+      <div class="error" id="errorCedula"></div>
+
+      <label for="nombres">Nombres:</label>
+      <input type="text" id="nombres" name="nombres">
+      <div class="error" id="errorNombres"></div>
+
+      <label for="apellidos">Apellidos:</label>
+      <input type="text" id="apellidos" name="apellidos">
+      <div class="error" id="errorApellidos"></div>
+
+      <label>Sexo:</label>
+      <div class="sexo-opciones">
+        <input type="radio" id="masculino" name="sexo" value="Masculino">
+        <label for="masculino">Masculino</label>
+
+        <input type="radio" id="femenino" name="sexo" value="Femenino">
+        <label for="femenino">Femenino</label>
+      </div>
+      <div class="error" id="errorSexo"></div>
+
+      <label for="correo">Correo:</label>
+      <input type="email" id="correo" name="correo">
+      <div class="error" id="errorCorreo"></div>
+
+      <label for="telefono">Teléfono:</label>
+      <input type="text" id="telefono" name="telefono" maxlength="10">
+      <div class="error" id="errorTelefono"></div>
+
+      <button type="submit">Registrar</button>
+      <hr>
+      <button type="reset">Vaciar Campos</button>
+    </form>
+  </div>
+
+  <script src="Validacion.js"></script>
+</body>
+</html>
