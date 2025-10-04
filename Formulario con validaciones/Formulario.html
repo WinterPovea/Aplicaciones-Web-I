@@ -8,9 +8,9 @@
   <div class="contenedor">
     <!-- Lado izquierdo -->
     <div class="mensaje">
-      <h1>¡Bienvenido a <strong>SHARK</strong>! </h1>
+      <h1>¡Bienvenido a <strong>SHARK BANK</strong>! </h1>
       <p>Por favor, complete todos los campos con sus datos personales y acceda
-        a la comunidad bancaria mas <strong>EXCLUSIVA</strong>.
+        a la comunidad bancaria más <strong>EXCLUSIVA</strong>.
       </p>
     </div>
 
@@ -40,6 +40,14 @@
       </div>
       <div class="error" id="errorSexo"></div>
 
+      <label for="direccion">Dirección:</label>
+      <input type="text" id="direccion" name="direccion" maxlength="100">
+      <div class="error" id="errorDireccion"></div>
+
+      <label for="fechaNacimiento">Fecha de nacimiento:</label>
+      <input type="date" id="fechaNacimiento" name="fechaNacimiento">
+      <div class="error" id="errorFechaNacimiento"></div>
+
       <label for="correo">Correo:</label>
       <input type="email" id="correo" name="correo">
       <div class="error" id="errorCorreo"></div>
@@ -48,9 +56,11 @@
       <input type="text" id="telefono" name="telefono" maxlength="10">
       <div class="error" id="errorTelefono"></div>
 
-      <button type="submit">Registrar</button>
-      <hr>
-      <button type="reset">Vaciar Campos</button>
+      <div class="botones">
+        <button type="submit">Registrar</button>
+        <button type="reset">Vaciar Campos</button>
+      </div>
+
     </form>
   </div>
 
