@@ -1,3 +1,4 @@
+/* Estilos generales */
 body {
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   background-color: #1d1d1f;
@@ -7,13 +8,13 @@ body {
   height: 100vh;
   margin: 0;
 }
-
+/* Imagen de fondo */
 body {
-  background-image: url('sl_030220_28570_39.jpg'); /* ruta de tu archivo */
-  background-size: cover;      /* la imagen cubre todo el área */
-  background-position: center; /* centra la imagen */
-  background-repeat: no-repeat; /* no repite la imagen */
-  background-attachment: fixed; /* la imagen se mantiene al hacer scroll */
+  background-image: url('sl_030220_28570_39.jpg'); 
+  background-size: cover;    
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; 
 }
 
 
@@ -93,7 +94,7 @@ button:hover {
   background-color: #c9bf0f;
 }
 
-/* === Alineación de los radio buttons de sexo === */
+/*Alineación de los radio buttons de sexo*/
 .sexo-opciones {
   display: flex;
   gap: 15px;
@@ -106,7 +107,7 @@ button:hover {
   font-weight: normal;
 }
 
-/* --- Responsivo (para pantallas pequeñas) --- */
+/*Responsivo (para pantallas pequeñas)*/
 @media (max-width: 768px) {
   .contenedor {
     flex-direction: column;
