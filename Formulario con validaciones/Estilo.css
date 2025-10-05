@@ -2,21 +2,17 @@
 body {
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   background-color: #1d1d1f;
+  background-image: url('sl_030220_28570_39.jpg'); 
+  background-size: cover;    
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; 
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
   margin: 0;
 }
-/* Imagen de fondo */
-body {
-  background-image: url('sl_030220_28570_39.jpg'); 
-  background-size: cover;    
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed; 
-}
-
 
 /* Contenedor principal: divide la pantalla en dos partes */
 .contenedor {
@@ -28,7 +24,7 @@ body {
   gap: 40px; /* Espacio entre el texto y el formulario */
 }
 
-/* Lado izquierdo (mensajes, texto o imagen) */
+/* Lado izquierdo (mensaje informativo) */
 .mensaje {
   flex: 1;
   color: #ffffff;
@@ -48,11 +44,13 @@ form {
   max-width: 350px;
 }
 
+/* Encabezado del formulario */
 h2 {
   text-align: center;
   margin-bottom: 20px;
 }
 
+/* Etiquetas e inputs */
 label {
   display: block;
   margin-bottom: 5px;
@@ -72,6 +70,7 @@ input:focus {
   outline: none;
 }
 
+/* Mensajes de error */
 .error {
   color: red;
   font-size: 0.9em;
@@ -79,6 +78,7 @@ input:focus {
   margin-bottom: 10px;
 }
 
+/* Botones generales */
 button {
   width: 100%;
   padding: 10px;
@@ -94,7 +94,7 @@ button:hover {
   background-color: #c9bf0f;
 }
 
-/*Alineación de los radio buttons de sexo*/
+/* Alineación de los botones de sexo */
 .sexo-opciones {
   display: flex;
   gap: 15px;
@@ -107,18 +107,18 @@ button:hover {
   font-weight: normal;
 }
 
+/* Contenedor de botones */
 .botones {
   display: flex;
-  justify-content: space-between; /* Espacio entre los dos botones */
-  gap: 10px; /* separación entre ellos */
+  justify-content: space-between; 
+  gap: 10px;
 }
 
 .botones button {
-  flex: 1; /* ambos botones ocupan el mismo ancho */
+  flex: 1;
 }
 
-
-/*Responsivo (para pantallas pequeñas)*/
+/* Diseño responsivo */
 @media (max-width: 768px) {
   .contenedor {
     flex-direction: column;
