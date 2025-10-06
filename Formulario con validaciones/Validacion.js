@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
     clearErrors();
     let valido = true;
 
+    
 // Validar cédula
     let cedula = document.getElementById('cedula').value.trim();
     if (!isNumericLength(cedula, 10)) {
