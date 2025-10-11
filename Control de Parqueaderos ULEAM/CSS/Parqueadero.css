@@ -1,0 +1,150 @@
+/* ===============================
+   Gestión de parqueaderos
+   =============================== */
+
+.content-section {
+  padding: 2rem;
+}
+
+.content-section h2 {
+  color: #2e7d32;
+  margin-bottom: 1rem;
+}
+
+/* Formulario */
+.parqueadero-form {
+  background-color: #fff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  margin-bottom: 2rem;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-weight: 500;
+  margin-bottom: 0.3rem;
+}
+
+.form-group input,
+.form-group select {
+  padding: 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: #2e7d32;
+  outline: none;
+  box-shadow: 0 0 5px rgba(46,125,50,0.3);
+}
+
+.form-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.btn-guardar {
+  background-color: #2e7d32;
+  color: #fff;
+  border: none;
+  padding: 0.7rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.btn-guardar:hover {
+  background-color: #256628;
+}
+
+.btn-cancelar {
+  background-color: #ccc;
+  border: none;
+  padding: 0.7rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.btn-cancelar:hover {
+  background-color: #b3b3b3;
+}
+
+/* Tabla */
+.tabla-parqueaderos {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.tabla-parqueaderos th,
+.tabla-parqueaderos td {
+  padding: 0.8rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+.tabla-parqueaderos th {
+  background-color: #2e7d32;
+  color: #fff;
+}
+
+.estado {
+  font-weight: bold;
+  padding: 0.2rem 0.5rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+
+.estado.activo {
+  background-color: #c8e6c9;
+  color: #1b5e20;
+}
+
+.estado.inactivo {
+  background-color: #ffcdd2;
+  color: #b71c1c;
+}
+
+.btn-editar,
+.btn-eliminar {
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  cursor: pointer;
+  color: white;
+  font-size: 0.85rem;
+  transition: background 0.3s;
+}
+
+.btn-editar {
+  background-color: #1565c0;
+}
+
+.btn-editar:hover {
+  background-color: #0d47a1;
+}
+
+.btn-eliminar {
+  background-color: #ac2f2f;
+}
+
+.btn-eliminar:hover {
+  background-color: #8a1c1c;
+}

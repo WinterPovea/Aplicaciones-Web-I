@@ -1,0 +1,107 @@
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Control de Acceso - Parqueaderos ULEAM</title>
+  <link rel="stylesheet" href="CSS/Dashboard.css">
+  <link rel="stylesheet" href="CSS/ControlAcceso.css">
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="logo">
+      <img src="IMG/Logo_Uleam.png" alt="Logo ULEAM">
+      <h2>Control Parqueaderos</h2>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="Dashboard.html">🏠 Inicio</a></li>
+        <li><a href="#">🚗 Control de Acceso</a></li>
+        <li><a class="active" href="Parqueaderos.html">🅿️ Parqueaderos</a></li>
+        <li><a class="active" href="Usuarios.html">👥 Usuarios</a></li>
+        <li><a class="active" href="Visitante.html">🧍‍♂️ Visitantes</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <!-- Contenido principal -->
+  <main class="main-content">
+    <header class="topbar">
+      <h1>Control de Acceso Vehicular</h1>
+      <div class="user-info">
+        <span>Guardia: <b>Pedro Zambrano</b></span>
+        <button class="logout-btn">Cerrar sesión</button>
+      </div>
+    </header>
+
+    <section class="content-section">
+      <h2>Registrar ingreso o salida de vehículos</h2>
+
+      <form class="control-form">
+        <div class="form-grid">
+          <div class="form-group full-width">
+            <label for="buscar">Buscar por placa o cédula</label>
+            <div class="input-with-btn">
+              <input type="text" id="buscar" name="buscar" placeholder="Ej: ABC-1234 o 1312345678" required>
+              <button type="button" class="btn-verificar">Verificar</button>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="nombreUsuario">Nombre del usuario</label>
+            <input type="text" id="nombreUsuario" name="nombreUsuario" readonly>
+          </div>
+
+          <div class="form-group">
+            <label for="fechaHora">Hora y fecha actual</label>
+            <input type="text" id="fechaHora" name="fechaHora" readonly>
+          </div>
+
+          <div class="form-group">
+            <label for="accion">Acción</label>
+            <select id="accion" name="accion" required>
+              <option value="">Seleccione</option>
+              <option value="ingreso">Ingreso</option>
+              <option value="salida">Salida</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn-registrar">Registrar evento</button>
+          <button type="reset" class="btn-cancelar">Cancelar</button>
+        </div>
+      </form>
+
+      <h2>Historial reciente de movimientos</h2>
+
+      <table class="tabla-historial">
+        <thead>
+          <tr>
+            <th>Placa</th>
+            <th>Usuario</th>
+            <th>Acción</th>
+            <th>Fecha y Hora</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>MBD-0987</td>
+            <td>Carlos Mendoza</td>
+            <td><span class="accion ingreso">Ingreso</span></td>
+            <td>2025-10-09 07:43</td>
+          </tr>
+          <tr>
+            <td>ABC-1234</td>
+            <td>Lucía Torres</td>
+            <td><span class="accion salida">Salida</span></td>
+            <td>2025-10-09 07:41</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro de Usuarios Autorizados - Parqueaderos ULEAM</title>
+  <link rel="stylesheet" href="CSS/Dashboard.css">
+  <link rel="stylesheet" href="CSS/Usuarios.css">
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="logo">
+      <img src="img/Logo_Uleam.png" alt="Logo ULEAM">
+      <h2>Control Parqueaderos</h2>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="Dashboard.html">🏠 Inicio</a></li>
+        <li><a class="active" href="ControlAcceso.html">🚗 Control de Acceso</a></li>
+        <li><a class="active" href="Parqueaderos.html">🅿️ Parqueaderos</a></li>
+        <li><a href="#">👥 Usuarios</a></li>
+        <li><a class="active" href="Visitante.html">🧍‍♂️ Visitantes</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <!-- Contenido principal -->
+  <main class="main-content">
+    <header class="topbar">
+      <h1>Gestión de Usuarios Autorizados</h1>
+      <div class="user-info">
+        <span>Administrador: <b>María López</b></span>
+        <button class="logout-btn">Cerrar sesión</button>
+      </div>
+    </header>
+
+    <section class="content-section">
+      <h2>Registrar persona autorizada</h2>
+
+      <form class="registro-form">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="nombre">Nombre completo</label>
+            <input type="text" id="nombre" name="nombre" required>
+          </div>
+
+          <div class="form-group">
+            <label for="cedula">Cédula / ID ULEAM</label>
+            <input type="text" id="cedula" name="cedula" required>
+          </div>
+
+          <div class="form-group">
+            <label for="tipoUsuario">Tipo de usuario</label>
+            <select id="tipoUsuario" name="tipoUsuario" required>
+              <option value="">Seleccione</option>
+              <option value="profesor">Profesor</option>
+              <option value="estudiante">Estudiante</option>
+              <option value="administrativo">Personal administrativo</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="facultad">Facultad / Departamento</label>
+            <input type="text" id="facultad" name="facultad" required>
+          </div>
+
+          <div class="form-group">
+            <label for="placa">Número de placa</label>
+            <input type="text" id="placa" name="placa" required>
+          </div>
+
+          <div class="form-group">
+            <label for="tipoVehiculo">Tipo de vehículo</label>
+            <select id="tipoVehiculo" name="tipoVehiculo" required>
+              <option value="">Seleccione</option>
+              <option value="auto">Auto</option>
+              <option value="moto">Moto</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="correo">Correo institucional</label>
+            <input type="email" id="correo" name="correo" required>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn-registrar">Registrar</button>
+          <button type="reset" class="btn-cancelar">Cancelar</button>
+        </div>
+      </form>
+
+      <h2>Listado de personas autorizadas</h2>
+
+      <table class="tabla-autorizados">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Cédula</th>
+            <th>Tipo</th>
+            <th>Facultad / Departamento</th>
+            <th>Placa</th>
+            <th>Vehículo</th>
+            <th>Correo</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>001</td>
+            <td>Juan Pérez</td>
+            <td>1314567890</td>
+            <td>Profesor</td>
+            <td>Facultad de Ingeniería</td>
+            <td>MBA-2563</td>
+            <td>Auto</td>
+            <td>juan.perez@uleam.edu.ec</td>
+            <td>
+              <button class="btn-editar">Editar</button>
+              <button class="btn-eliminar">Eliminar</button>
+            </td>
+          </tr>
+          <tr>
+            <td>002</td>
+            <td>Andrea Zambrano</td>
+            <td>1319876543</td>
+            <td>Estudiante</td>
+            <td>Ciencias Informáticas</td>
+            <td>MCG-9852</td>
+            <td>Moto</td>
+            <td>andrea.zambrano@uleam.edu.ec</td>
+            <td>
+              <button class="btn-editar">Editar</button>
+              <button class="btn-eliminar">Eliminar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+</body>
+</html>

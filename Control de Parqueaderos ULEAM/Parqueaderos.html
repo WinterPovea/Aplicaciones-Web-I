@@ -1,0 +1,124 @@
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestión de Parqueaderos - Parqueaderos ULEAM</title>
+  <link rel="stylesheet" href="CSS/Dashboard.css">
+  <link rel="stylesheet" href="CSS/Parqueadero.css">
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="logo">
+      <img src="IMG/Logo_Uleam.png" alt="Logo ULEAM">
+      <h2>Control Parqueaderos</h2>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="Dashboard.html">🏠 Inicio</a></li>
+        <li><a class="active" href="ControlAcceso.html">🚗 Control de Acceso</a></li>
+        <li><a href="#">🅿️ Parqueaderos</a></li>
+        <li><a class="active" href="Usuarios.html">👥 Usuarios</a></li>
+        <li><a class="active" href="Visitante.html">🧍‍♂️ Visitantes</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <!-- Contenido principal -->
+  <main class="main-content">
+    <header class="topbar">
+      <h1>Gestión de Parqueaderos</h1>
+      <div class="user-info">
+        <span>Administrador: <b>María López</b></span>
+        <button class="logout-btn">Cerrar sesión</button>
+      </div>
+    </header>
+
+    <section class="content-section">
+      <h2>Registrar nuevo parqueadero</h2>
+
+      <form class="parqueadero-form">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="nombreParqueadero">Nombre del parqueadero</label>
+            <input type="text" id="nombreParqueadero" name="nombreParqueadero" placeholder="Ej: Parqueadero Facultad de Comunicación" required>
+          </div>
+
+          <div class="form-group">
+            <label for="ubicacion">Ubicación / Zona</label>
+            <input type="text" id="ubicacion" name="ubicacion" placeholder="Ej: Sector Norte - Puerta 2" required>
+          </div>
+
+          <div class="form-group">
+            <label for="capacidad">Capacidad total</label>
+            <input type="number" id="capacidad" name="capacidad" min="1" required>
+          </div>
+
+          <div class="form-group">
+            <label for="disponibles">Espacios disponibles</label>
+            <input type="number" id="disponibles" name="disponibles" min="0" required>
+          </div>
+
+          <div class="form-group">
+            <label for="estado">Estado</label>
+            <select id="estado" name="estado" required>
+              <option value="">Seleccione</option>
+              <option value="activo">Activo</option>
+              <option value="inactivo">Inactivo</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn-guardar">Guardar</button>
+          <button type="reset" class="btn-cancelar">Cancelar</button>
+        </div>
+      </form>
+
+      <h2>Listado de parqueaderos registrados</h2>
+
+      <table class="tabla-parqueaderos">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Ubicación</th>
+            <th>Capacidad</th>
+            <th>Disponibles</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>001</td>
+            <td>Parqueadero Facultad de Ingeniería</td>
+            <td>Zona Norte - Puerta 1</td>
+            <td>60</td>
+            <td>45</td>
+            <td><span class="estado activo">Activo</span></td>
+            <td>
+              <button class="btn-editar">Editar</button>
+              <button class="btn-eliminar">Eliminar</button>
+            </td>
+          </tr>
+
+          <tr>
+            <td>002</td>
+            <td>Parqueadero Facultad de Ciencias Médicas</td>
+            <td>Zona Este - Puerta 3</td>
+            <td>40</td>
+            <td>32</td>
+            <td><span class="estado inactivo">Inactivo</span></td>
+            <td>
+              <button class="btn-editar">Editar</button>
+              <button class="btn-eliminar">Eliminar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,167 @@
+/* ===============================
+   Control de Acceso Vehicular
+   =============================== */
+
+.content-section {
+  padding: 2rem;
+}
+
+.content-section h2 {
+  color: #2e7d32;
+  margin-bottom: 1rem;
+}
+
+/* Formulario */
+.control-form {
+  background-color: #fff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  margin-bottom: 2rem;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group.full-width {
+  grid-column: 1 / -1;
+}
+
+.form-group label {
+  font-weight: 500;
+  margin-bottom: 0.3rem;
+}
+
+.form-group input,
+.form-group select {
+  padding: 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: #2e7d32;
+  outline: none;
+  box-shadow: 0 0 5px rgba(46,125,50,0.3);
+}
+
+/* Campo con botón "Verificar" */
+.input-with-btn {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.input-with-btn input {
+  flex: 1;
+}
+
+.btn-verificar {
+  background-color: #1565c0;
+  color: white;
+  border: none;
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.btn-verificar:hover {
+  background-color: #0d47a1;
+}
+
+/* Botones principales */
+.form-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.btn-registrar {
+  background-color: #2e7d32;
+  color: #fff;
+  border: none;
+  padding: 0.7rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.btn-registrar:hover {
+  background-color: #256628;
+}
+
+.btn-cancelar {
+  background-color: #ccc;
+  border: none;
+  padding: 0.7rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.btn-cancelar:hover {
+  background-color: #b3b3b3;
+}
+
+/* Tabla */
+.tabla-historial {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.tabla-historial th,
+.tabla-historial td {
+  padding: 0.8rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+.tabla-historial th {
+  background-color: #2e7d32;
+  color: #fff;
+}
+
+.accion {
+  font-weight: bold;
+  padding: 0.2rem 0.5rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+
+.accion.ingreso {
+  background-color: #c8e6c9;
+  color: #1b5e20;
+}
+
+.accion.salida {
+  background-color: #ffe0b2;
+  color: #e65100;
+}
+
+/* Adaptabilidad */
+@media (max-width: 600px) {
+  .form-actions {
+    flex-direction: column;
+  }
+
+  .input-with-btn {
+    flex-direction: column;
+  }
+
+  .btn-verificar {
+    width: 100%;
+  }
+}
