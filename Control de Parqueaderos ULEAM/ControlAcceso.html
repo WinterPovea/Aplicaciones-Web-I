@@ -59,12 +59,8 @@
           </div>
 
           <div class="form-group">
-            <label for="accion">Acción</label>
-            <select id="accion" name="accion" required>
-              <option value="">Seleccione</option>
-              <option value="ingreso">Ingreso</option>
-              <option value="salida">Salida</option>
-            </select>
+            <label for="accionDetectada">Acción detectada</label>
+            <input type="text" id="accionDetectada" name="accionDetectada" readonly placeholder="Se determinará automáticamente">
           </div>
         </div>
 
@@ -86,22 +82,12 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>MBD-0987</td>
-            <td>Carlos Mendoza</td>
-            <td><span class="accion ingreso">Ingreso</span></td>
-            <td>2025-10-09 07:43</td>
-          </tr>
-          <tr>
-            <td>ABC-1234</td>
-            <td>Lucía Torres</td>
-            <td><span class="accion salida">Salida</span></td>
-            <td>2025-10-09 07:41</td>
-          </tr>
         </tbody>
       </table>
     </section>
   </main>
 
+<script src="JS/controlAcceso.js"></script>
 </body>
 </html>
+

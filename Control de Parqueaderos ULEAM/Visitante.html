@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
@@ -31,7 +30,7 @@
     <header class="topbar">
       <h1>Registro de Visitantes</h1>
       <div class="user-info">
-        <span>Guardia: <b>Pedro Zambrano</b></span>
+        <span>Administrador: <b>Pedro Zambrano</b></span>
         <button class="logout-btn">Cerrar sesión</button>
       </div>
     </header>
@@ -98,24 +97,6 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Marcos Loor</td>
-            <td>1309876543</td>
-            <td>MBX-2458</td>
-            <td>Facultad de Ciencias Económicas</td>
-            <td>Reunión con docente</td>
-            <td>08:15</td>
-            <td><button class="btn-salida">Finalizar</button></td>
-          </tr>
-          <tr>
-            <td>Lucía Paredes</td>
-            <td>1311122233</td>
-            <td>—</td>
-            <td>Facultad de Medicina</td>
-            <td>Entrega de material</td>
-            <td>09:05</td>
-            <td><button class="btn-salida">Finalizar</button></td>
-          </tr>
         </tbody>
       </table>
     </section>
@@ -129,6 +110,6 @@
       horaIngreso.value = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
     }
   </script>
-
+<script src="JS/validarVisitantes.js"></script>
 </body>
 </html>
