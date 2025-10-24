@@ -1,89 +1,81 @@
-// ============================================
-//   Control de Acceso Vehicular (Versión Demo)
-// ============================================
+// =======================================
+// Control de Acceso Vehicular 
+// =======================================
 
-document.addEventListener("DOMContentLoaded", () => {
-  // --- Simulación de base de datos ---
-  const vehiculosRegistrados = [
-    { placa: "ABC-1234", cedula: "1312345678", usuario: "Lucía Torres" },
-    { placa: "MBD-0987", cedula: "1318765432", usuario: "Carlos Mendoza" },
-    { placa: "ULE-2025", cedula: "1315678901", usuario: "Pedro Zambrano" }
-  ];
+// Simulación de base de datos
+const vehiculos = [
+  { placa: "ABC-1234", cedula: "1312345678", usuario: "Lucía Torres" },
+  { placa: "MBD-0987", cedula: "1318765432", usuario: "Carlos Mendoza" },
+  { placa: "ULE-2025", cedula: "1315678901", usuario: "Pedro Zambrano" }
+];
 
-  // --- Elementos del DOM ---
-  const inputBuscar = document.getElementById("buscar");
-  const btnVerificar = document.querySelector(".btn-verificar");
-  const inputNombre = document.getElementById("nombreUsuario");
-  const inputFechaHora = document.getElementById("fechaHora");
-  const inputAccion = document.getElementById("accionDetectada");
-  const form = document.querySelector(".control-form");
-  const tablaBody = document.querySelector(".tabla-historial tbody");
+// Referencias a los elementos
+const buscar = document.getElementById("buscar");
+const btnVerificar = document.querySelector(".btn-verificar");
+const nombre = document.getElementById("nombreUsuario");
+const fechaHora = document.getElementById("fechaHora");
+const accion = document.getElementById("accionDetectada");
+const form = document.querySelector(".control-form");
+const tabla = document.querySelector(".tabla-historial tbody");
 
-  let vehiculoEncontrado = null;
-  let estadoVehiculo = {}; // Guarda si está dentro o fuera
+// Guardar si un vehículo está dentro o fuera
+const estado = {};
+let encontrado = null;
 
-  // --- Función: obtener fecha y hora actual ---
-  function obtenerFechaHora() {
-    const ahora = new Date();
-    const fecha = ahora.toISOString().split("T")[0];
-    const hora = ahora.toTimeString().split(" ")[0];
-    return `${fecha} ${hora}`;
+// Función para obtener fecha y hora actual
+function obtenerFechaHora() {
+  const ahora = new Date();
+  return ahora.toLocaleString(); 
+}
+
+// Verificar vehículo
+btnVerificar.onclick = function () {
+  const valor = buscar.value.trim();
+  encontrado = vehiculos.find(v => v.placa === valor || v.cedula === valor);
+
+  if (encontrado) {
+    nombre.value = encontrado.usuario;
+    fechaHora.value = obtenerFechaHora();
+    const esIngreso = !estado[encontrado.placa];
+    accion.value = esIngreso ? "Ingreso" : "Salida";
+  } else {
+    alert("❌ Vehículo o usuario no encontrado");
+    form.reset();
+    nombre.value = fechaHora.value = accion.value = "";
+  }
+};
+
+
+// Registrar evento
+form.onsubmit = function (e) {
+  e.preventDefault();
+
+  if (!encontrado) {
+    alert("⚠️ Verifique un vehículo antes de registrar.");
+    return;
   }
 
-  // --- Verificar vehículo ---
-  btnVerificar.addEventListener("click", () => {
-    const valor = inputBuscar.value.trim();
-    vehiculoEncontrado = vehiculosRegistrados.find(
-      v => v.placa === valor || v.cedula === valor
-    );
+  const { placa, usuario } = encontrado;
+  const tipo = accion.value;
+  const momento = fechaHora.value;
 
-    if (vehiculoEncontrado) {
-      inputNombre.value = vehiculoEncontrado.usuario;
-      inputFechaHora.value = obtenerFechaHora();
+  // Cambiar el estado (si entra, queda dentro)
+  estado[placa] = tipo === "Ingreso";
 
-      // Detectar si entra o sale
-      const esIngreso = !estadoVehiculo[vehiculoEncontrado.placa];
-      inputAccion.value = esIngreso ? "Ingreso" : "Salida";
-    } else {
-      inputNombre.value = "";
-      inputFechaHora.value = "";
-      inputAccion.value = "";
-      alert("❌ Vehículo o usuario no encontrado.");
-    }
-  });
+  // Agregar nueva fila al historial
+  const fila = document.createElement("tr");
+  fila.innerHTML = `
+    <td>${placa}</td>
+    <td>${usuario}</td>
+    <td><span class="accion ${tipo.toLowerCase()}">${tipo}</span></td>
+    <td>${momento}</td>
+  `;
+  tabla.prepend(fila);
 
-  // --- Registrar evento ---
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
+  // Limpiar campos
+  form.reset();
+  nombre.value = fechaHora.value = accion.value = "";
+  encontrado = null;
+};
 
-    if (!vehiculoEncontrado) {
-      alert("⚠️ Primero verifique un vehículo antes de registrar.");
-      return;
-    }
 
-    const placa = vehiculoEncontrado.placa;
-    const usuario = vehiculoEncontrado.usuario;
-    const accion = inputAccion.value;
-    const fechaHora = inputFechaHora.value;
-
-    // Alternar el estado
-    estadoVehiculo[placa] = accion === "Ingreso";
-
-    // Crear una nueva fila en la tabla
-    const nuevaFila = document.createElement("tr");
-    nuevaFila.innerHTML = `
-      <td>${placa}</td>
-      <td>${usuario}</td>
-      <td><span class="accion ${accion.toLowerCase()}">${accion}</span></td>
-      <td>${fechaHora}</td>
-    `;
-    tablaBody.prepend(nuevaFila);
-
-    // Limpiar campos
-    form.reset();
-    inputNombre.value = "";
-    inputFechaHora.value = "";
-    inputAccion.value = "";
-    vehiculoEncontrado = null;
-  });
-});

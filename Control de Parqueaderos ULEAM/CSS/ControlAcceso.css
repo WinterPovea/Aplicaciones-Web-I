@@ -151,6 +151,7 @@
   color: #e65100;
 }
 
+
 /* Adaptabilidad */
 @media (max-width: 600px) {
   .form-actions {
