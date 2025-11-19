@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Renderizar tabla
   const renderTabla = () => {
-    tablaBody.innerHTML = usuarios.map((u, i) => ` //Recorre el array usuarios
+    tablaBody.innerHTML = usuarios.map((u, i) => ` 
       <tr>
         <td>${String(i + 1).padStart(3, "0")}</td>
         <td>${u.nombre}</td>

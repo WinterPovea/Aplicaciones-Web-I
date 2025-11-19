@@ -8,9 +8,9 @@ document.addEventListener("DOMContentLoaded", () => { // Asegurar que el DOM est
 
   // Renderizar tabla
   const renderTabla = () => {
-    tablaBody.innerHTML = parqueaderos.map((p, i) => ` //i es el índice del registro
+    tablaBody.innerHTML = parqueaderos.map((p, i) => ` 
       <tr>
-        <td>${String(i + 1).padStart(3, "0")}</td> //padStart para formato 001, 002, ...
+        <td>${String(i + 1).padStart(3, "0")}</td> 
         <td>${p.nombre}</td>
         <td>${p.ubicacion}</td>
         <td>${p.capacidad}</td>
