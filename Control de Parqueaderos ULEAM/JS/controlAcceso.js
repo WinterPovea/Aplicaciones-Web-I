@@ -70,7 +70,7 @@ form.onsubmit = function (e) {
     <td><span class="accion ${tipo.toLowerCase()}">${tipo}</span></td>
     <td>${momento}</td>
   `;
-  tabla.prepend(fila);
+  tabla.prepend(fila); // Agregar al inicio de la tabla
 
   // Limpiar campos
   form.reset();

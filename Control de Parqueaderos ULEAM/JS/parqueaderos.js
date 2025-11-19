@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => { // Asegurar que el DOM esté cargado
   const form = document.querySelector(".parqueadero-form");
   const tablaBody = document.querySelector(".tabla-parqueaderos tbody");
   let parqueaderos = JSON.parse(localStorage.getItem("parqueaderos")) || [];
@@ -8,9 +8,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Renderizar tabla
   const renderTabla = () => {
-    tablaBody.innerHTML = parqueaderos.map((p, i) => `
+    tablaBody.innerHTML = parqueaderos.map((p, i) => ` //i es el índice del registro
       <tr>
-        <td>${String(i + 1).padStart(3, "0")}</td>
+        <td>${String(i + 1).padStart(3, "0")}</td> //padStart para formato 001, 002, ...
         <td>${p.nombre}</td>
         <td>${p.ubicacion}</td>
         <td>${p.capacidad}</td>
@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const i = e.target.dataset.i;
     if (e.target.classList.contains("btn-eliminar")) {
       if (confirm(`¿Eliminar "${parqueaderos[i].nombre}"?`)) {
-        parqueaderos.splice(i, 1);
+        parqueaderos.splice(i, 1); //splice elimina el elemento
         guardar(); renderTabla();
       }
     }
@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
       form.capacidad.value = p.capacidad;
       form.disponibles.value = p.disponibles;
       form.estado.value = p.estado;
-      form.dataset.editIndex = i;
+      form.dataset.editIndex = i; // Marcar que estamos editando
       form.scrollIntoView({ behavior: "smooth" });
     }
   });
@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
       estado: form.estado.value
     };
 
-    if (form.dataset.editIndex) {
+    if (form.dataset.editIndex) { // Si existe, estamos editando
       parqueaderos[form.dataset.editIndex] = data;
       delete form.dataset.editIndex;
       alert("✅ Parqueadero actualizado");

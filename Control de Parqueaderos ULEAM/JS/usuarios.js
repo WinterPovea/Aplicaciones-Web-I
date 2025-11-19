@@ -4,11 +4,11 @@ document.addEventListener("DOMContentLoaded", () => {
   let usuarios = JSON.parse(localStorage.getItem("usuariosAutorizados")) || [];
 
   // Guardar en localStorage
-  const guardar = () => localStorage.setItem("usuariosAutorizados", JSON.stringify(usuarios));
+  const guardar = () => localStorage.setItem("usuariosAutorizados", JSON.stringify(usuarios)); //stringify convierte a cadena
 
   // Renderizar tabla
   const renderTabla = () => {
-    tablaBody.innerHTML = usuarios.map((u, i) => `
+    tablaBody.innerHTML = usuarios.map((u, i) => ` //Recorre el array usuarios
       <tr>
         <td>${String(i + 1).padStart(3, "0")}</td>
         <td>${u.nombre}</td>
@@ -58,11 +58,11 @@ document.addEventListener("DOMContentLoaded", () => {
   form.addEventListener("submit", (e) => {
     e.preventDefault();
     const data = {
-      nombre: form.nombre.value.trim(),
+      nombre: form.nombre.value.trim(), 
       cedula: form.cedula.value.trim(),
       tipoUsuario: form.tipoUsuario.value,
       facultad: form.facultad.value.trim(),
-      placa: form.placa.value.trim().toUpperCase(),
+      placa: form.placa.value.trim().toUpperCase(), //toUpperCase para normalizar placas
       tipoVehiculo: form.tipoVehiculo.value,
       correo: form.correo.value.trim(),
     };
