@@ -80,7 +80,7 @@ body {
   padding: 0.8rem 1.5rem;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
-
+/* Título de la barra superior */
 .topbar h1 {
   color: #2e7d32;
   font-size: 1.4rem;
@@ -92,6 +92,7 @@ body {
   gap: 1rem;
 }
 
+/* Botón de cerrar sesión */
 .logout-btn {
   background-color: #ac2f2f;
   color: white;
@@ -135,6 +136,7 @@ body {
   margin-bottom: 0.5rem;
 }
 
+/*Color Numeros*/
 .card p {
   font-size: 1.6rem;
   font-weight: bold;

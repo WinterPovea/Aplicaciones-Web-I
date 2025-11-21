@@ -5,7 +5,7 @@
 .content-section {
   padding: 2rem;
 }
-
+/*Colores Títulos*/
 .content-section h2 {
   color: #2e7d32;
   margin-bottom: 1rem;
@@ -36,6 +36,7 @@
   margin-bottom: 0.3rem;
 }
 
+/*Color de campos sin enfocar*/
 .form-group input,
 .form-group select {
   padding: 0.6rem;
@@ -44,6 +45,7 @@
   font-size: 0.95rem;
 }
 
+/*Color de campos al enfocar*/
 .form-group input:focus,
 .form-group select:focus {
   border-color: #2e7d32;
