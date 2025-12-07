@@ -1,0 +1,20 @@
+[
+  {
+    "nombre": "Lucía Torres",
+    "cedula": "1312345678",
+    "tipoUsuario": "Docente",
+    "facultad": "Ciencias Administrativas",
+    "placa": "ABC-1234",
+    "tipoVehiculo": "Automóvil",
+    "correo": "l.torres@uleam.edu.ec"
+  },
+  {
+    "nombre": "Carlos Mendoza",
+    "cedula": "1318765432",
+    "tipoUsuario": "Estudiante",
+    "facultad": "Ingeniería",
+    "placa": "MBD-0987",
+    "tipoVehiculo": "Motocicleta",
+    "correo": "c.mendoza@uleam.edu.ec"
+  }
+]

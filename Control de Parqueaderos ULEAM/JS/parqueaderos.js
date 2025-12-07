@@ -1,38 +1,67 @@
-document.addEventListener("DOMContentLoaded", () => { // Asegurar que el DOM esté cargado
+document.addEventListener("DOMContentLoaded", () => {
   const form = document.querySelector(".parqueadero-form");
   const tablaBody = document.querySelector(".tabla-parqueaderos tbody");
+
+  // =============================
+  // 1. Cargar JSON desde archivo
+  // =============================
   let parqueaderos = JSON.parse(localStorage.getItem("parqueaderos")) || [];
 
-  // Guardar en localStorage
-  const guardar = () => localStorage.setItem("parqueaderos", JSON.stringify(parqueaderos));
+  if (parqueaderos.length === 0) {
+    fetch("JSON/parqueaderos.json")
+      .then(res => res.json())
+      .then(data => {
+        parqueaderos = data;
+        guardar();
+        renderTabla();
+        console.log("Parqueaderos cargados desde JSON ✔");
+      })
+      .catch(err => console.error("Error cargando JSON:", err));
+  }
 
-  // Renderizar tabla
+  // Guardar en LocalStorage
+  const guardar = () =>
+    localStorage.setItem("parqueaderos", JSON.stringify(parqueaderos));
+
+  // =============================
+  // 2. Renderizar tabla
+  // =============================
   const renderTabla = () => {
-    tablaBody.innerHTML = parqueaderos.map((p, i) => ` 
+    tablaBody.innerHTML = parqueaderos
+      .map(
+        (p, i) => `
       <tr>
-        <td>${String(i + 1).padStart(3, "0")}</td> 
+        <td>${String(i + 1).padStart(3, "0")}</td>
         <td>${p.nombre}</td>
         <td>${p.ubicacion}</td>
         <td>${p.capacidad}</td>
         <td>${p.disponibles}</td>
-        <td><span class="estado ${p.estado}">${p.estado[0].toUpperCase() + p.estado.slice(1)}</span></td>
+        <td><span class="estado ${p.estado}">
+          ${p.estado[0].toUpperCase() + p.estado.slice(1)}
+        </span></td>
         <td>
           <button class="btn-editar" data-i="${i}">Editar</button>
           <button class="btn-eliminar" data-i="${i}">Eliminar</button>
         </td>
-      </tr>
-    `).join("");
+      </tr>`
+      )
+      .join("");
   };
 
-  // Manejo de clics en la tabla (editar / eliminar)
+  // =============================
+  // 3. Editar / Eliminar registros
+  // =============================
   tablaBody.addEventListener("click", (e) => {
     const i = e.target.dataset.i;
+
     if (e.target.classList.contains("btn-eliminar")) {
       if (confirm(`¿Eliminar "${parqueaderos[i].nombre}"?`)) {
-        parqueaderos.splice(i, 1); //splice elimina el elemento
-        guardar(); renderTabla();
+        parqueaderos.splice(i, 1);
+        guardar();
+        renderTabla();
       }
     }
+
     if (e.target.classList.contains("btn-editar")) {
       const p = parqueaderos[i];
       form.nombreParqueadero.value = p.nombre;
@@ -40,14 +69,18 @@ document.addEventListener("DOMContentLoaded", () => { // Asegurar que el DOM est
       form.capacidad.value = p.capacidad;
       form.disponibles.value = p.disponibles;
       form.estado.value = p.estado;
-      form.dataset.editIndex = i; // Marcar que estamos editando
+
+      form.dataset.editIndex = i;
       form.scrollIntoView({ behavior: "smooth" });
     }
   });
 
-  // Guardar / actualizar
+  // =============================
+  // 4. Guardar / Actualizar
+  // =============================
   form.addEventListener("submit", (e) => {
     e.preventDefault();
+
     const data = {
       nombre: form.nombreParqueadero.value.trim(),
       ubicacion: form.ubicacion.value.trim(),
@@ -56,17 +89,23 @@ document.addEventListener("DOMContentLoaded", () => { // Asegurar que el DOM est
       estado: form.estado.value
     };
 
-    if (form.dataset.editIndex) { // Si existe, estamos editando
+    // Editar
+    if (form.dataset.editIndex) {
       parqueaderos[form.dataset.editIndex] = data;
       delete form.dataset.editIndex;
       alert("✅ Parqueadero actualizado");
-    } else {
+    }
+    // Agregar nuevo
+    else {
       parqueaderos.push(data);
       alert("🅿️ Parqueadero agregado");
     }
 
-    guardar(); renderTabla(); form.reset();
+    guardar();
+    renderTabla();
+    form.reset();
   });
 
+  // Render inicial
   renderTabla();
 });

@@ -1,0 +1,16 @@
+[
+  {
+    "nombre": "Parqueadero Facultad de Comunicación",
+    "ubicacion": "Sector Norte - Puerta 2",
+    "capacidad": 40,
+    "disponibles": 15,
+    "estado": "activo"
+  },
+  {
+    "nombre": "Parqueadero Ciencias de la Salud",
+    "ubicacion": "Sector Central - Hospital Universitario",
+    "capacidad": 60,
+    "disponibles": 40,
+    "estado": "activo"
+  }
+]

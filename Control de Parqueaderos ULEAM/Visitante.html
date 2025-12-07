@@ -69,11 +69,6 @@
             <label for="horaIngreso">Hora de ingreso</label>
             <input type="text" id="horaIngreso" name="horaIngreso" readonly>
           </div>
-
-          <div class="form-group">
-            <label for="horaSalida">Hora de salida</label>
-            <input type="text" id="horaSalida" name="horaSalida" readonly>
-          </div>
         </div>
 
         <div class="form-actions">
@@ -82,6 +77,12 @@
         </div>
       </form>
 
+          <div class="historial-actions">
+            <button type="button" id="btnDescargarHistorial" class="btn-historial">
+              📥 Descargar historial JSON
+            </button>
+          </div>
+          
       <h2>Visitantes activos</h2>
 
       <table class="tabla-visitantes">

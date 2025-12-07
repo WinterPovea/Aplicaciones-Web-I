@@ -1,15 +1,30 @@
 // =======================================
-// Control de Acceso Vehicular 
+// Control de Acceso Vehicular (con XML)
 // =======================================
 
-// Simulación de base de datos
-const vehiculos = [
-  { placa: "ABC-1234", cedula: "1312345678", usuario: "Lucía Torres" },
-  { placa: "MBD-0987", cedula: "1318765432", usuario: "Carlos Mendoza" },
-  { placa: "ULE-2025", cedula: "1315678901", usuario: "Pedro Zambrano" }
-];
+let vehiculos = []; // Se llenará desde el XML
 
+// 1. Cargar XML al iniciar
+fetch("XML/vehiculos.xml")
+  .then(res => res.text())
+  .then(xmlString => {
+    const parser = new DOMParser();
+    const xml = parser.parseFromString(xmlString, "text/xml");
+
+    vehiculos = Array.from(xml.getElementsByTagName("vehiculo")).map(v => ({
+      placa: v.getElementsByTagName("placa")[0].textContent.trim(),
+      cedula: v.getElementsByTagName("cedula")[0].textContent.trim(),
+      usuario: v.getElementsByTagName("usuario")[0].textContent.trim()
+    }));
+
+    console.log("Vehículos cargados desde XML:", vehiculos);
+  })
+  .catch(err => console.error("Error cargando XML:", err));
+
+
+// ===============================
 // Referencias a los elementos
+// ===============================
 const buscar = document.getElementById("buscar");
 const btnVerificar = document.querySelector(".btn-verificar");
 const nombre = document.getElementById("nombreUsuario");
@@ -24,20 +39,27 @@ let encontrado = null;
 
 // Función para obtener fecha y hora actual
 function obtenerFechaHora() {
-  const ahora = new Date();
-  return ahora.toLocaleString(); 
+  return new Date().toLocaleString();
 }
 
+
+// ===============================
 // Verificar vehículo
+// ===============================
 btnVerificar.onclick = function () {
   const valor = buscar.value.trim();
-  encontrado = vehiculos.find(v => v.placa === valor || v.cedula === valor);
+
+  encontrado = vehiculos.find(v =>
+    v.placa === valor || v.cedula === valor
+  );
 
   if (encontrado) {
     nombre.value = encontrado.usuario;
     fechaHora.value = obtenerFechaHora();
+
     const esIngreso = !estado[encontrado.placa];
     accion.value = esIngreso ? "Ingreso" : "Salida";
+
   } else {
     alert("❌ Vehículo o usuario no encontrado");
     form.reset();
@@ -46,7 +68,9 @@ btnVerificar.onclick = function () {
 };
 
 
+// ===============================
 // Registrar evento
+// ===============================
 form.onsubmit = function (e) {
   e.preventDefault();
 
@@ -59,10 +83,10 @@ form.onsubmit = function (e) {
   const tipo = accion.value;
   const momento = fechaHora.value;
 
-  // Cambiar el estado (si entra, queda dentro)
+  // Cambiar estado
   estado[placa] = tipo === "Ingreso";
 
-  // Agregar nueva fila al historial
+  // Agregar fila a la tabla
   const fila = document.createElement("tr");
   fila.innerHTML = `
     <td>${placa}</td>
@@ -70,12 +94,11 @@ form.onsubmit = function (e) {
     <td><span class="accion ${tipo.toLowerCase()}">${tipo}</span></td>
     <td>${momento}</td>
   `;
-  tabla.prepend(fila); // Agregar al inicio de la tabla
+
+  tabla.prepend(fila);
 
   // Limpiar campos
   form.reset();
   nombre.value = fechaHora.value = accion.value = "";
   encontrado = null;
 };
-
-

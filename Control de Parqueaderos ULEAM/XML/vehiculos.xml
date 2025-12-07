@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vehiculos>
+  <vehiculo>
+    <placa>ABC-1234</placa>
+    <cedula>1312345678</cedula>
+    <usuario>Lucía Torres</usuario>
+  </vehiculo>
+
+  <vehiculo>
+    <placa>MBD-0987</placa>
+    <cedula>1318765432</cedula>
+    <usuario>Carlos Mendoza</usuario>
+  </vehiculo>
+
+  <vehiculo>
+    <placa>ULE-2025</placa>
+    <cedula>1315678901</cedula>
+    <usuario>Pedro Zambrano</usuario>
+  </vehiculo>
+</vehiculos>
