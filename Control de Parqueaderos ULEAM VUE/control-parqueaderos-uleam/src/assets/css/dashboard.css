@@ -1,0 +1,199 @@
+/* ================================
+   Estilo general - Dashboard ULEAM
+   ================================ */
+
+.dashboard {
+  width: 100vw;
+  height: 100vh; /* Cambiado de min-height a height para ocupar toda la pantalla */
+  display: flex;
+  font-family: 'Poppins', sans-serif;
+  background-color: #f4f6f8;
+  color: #333;
+  overflow: hidden; /* Evita barras de desplazamiento globales */
+}
+
+/* --------------------------
+   Sidebar (menú lateral) - Fijo
+   -------------------------- */
+.sidebar {
+  background-color: #2e7d32; /* Verde institucional */
+  color: white;
+  width: 213px;
+  height: 100vh; /* Altura completa */
+  position: fixed; /* Fijo a la izquierda */
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1rem 0;
+  box-shadow: 2px 0 8px rgba(0,0,0,0.1);
+  z-index: 10; /* Asegura que esté encima */
+}
+
+.sidebar .logo {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.sidebar .logo img {
+  width: 125px;
+  margin-bottom: 0.5rem;
+}
+
+.sidebar h2 {
+  font-size: 1.1rem;
+  color: #fff;
+}
+
+.sidebar nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar nav ul li {
+  margin: 0.8rem 0;
+}
+
+.sidebar nav ul li a {
+  color: #f1f1f1;
+  text-decoration: none;
+  padding: 0.7rem 1.5rem;
+  display: block;
+  transition: background 0.3s, padding-left 0.3s;
+}
+
+.sidebar nav ul li a:hover {
+  background-color: #256628;
+  padding-left: 2rem;
+}
+
+/* --------------------------
+   Área principal
+   -------------------------- */
+.main-content {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  margin-left: 200px; /* Espacio para el sidebar fijo */
+  padding-top: 70px; /* Espacio para el topbar fijo (ajusta según altura del topbar) */
+  height: calc(100vh - 70px); /* Altura restante */
+  width: calc(100vw - 213px);
+  box-sizing: border-box;
+  overflow-y: auto; /* Solo el contenido se desliza verticalmente */
+}
+
+/* Barra superior - Fija */
+.topbar {
+  background-color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem 1.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  position: fixed; /* Fijo arriba */
+  top: 0;
+  left: 213px; /* Después del sidebar */
+  width: calc(100vw - 265px); /* Ancho restante */
+  height: 70px; /* Altura fija para calcular padding */
+  z-index: 10;
+}
+
+/* Título de la barra superior */
+.topbar h1 {
+  color: #2e7d32;
+  font-size: 1.4rem;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Botón de cerrar sesión */
+.logout-btn {
+  background-color: #ac2f2f;
+  color: white;
+  border: none;
+  padding: 0.5rem 0.9rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.logout-btn:hover {
+  background-color: #8a1c1c;
+}
+
+/* --------------------------
+   Tarjetas informativas
+   -------------------------- */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem;
+}
+
+.card {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.card h3 {
+  color: #2e7d32;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+/*Color Numeros*/
+.card p {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.card ul {
+  padding-left: 1.2rem;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+/* --------------------------
+   Adaptabilidad móvil
+   -------------------------- */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 70px;
+  }
+
+  .sidebar h2, 
+  .sidebar nav ul li a {
+    font-size: 0;
+  }
+
+  .sidebar .logo img {
+    width: 50px;
+  }
+
+  .main-content {
+    margin-left: 70px; /* Ajusta para sidebar móvil */
+    padding-top: 60px; /* Ajusta para topbar móvil */
+    height: calc(100vh - 60px);
+  }
+
+  .topbar {
+    left: 70px;
+    width: calc(100vw - 70px);
+    height: 60px;
+  }
+}

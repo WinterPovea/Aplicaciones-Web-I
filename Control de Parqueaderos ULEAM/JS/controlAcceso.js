@@ -16,15 +16,13 @@ fetch("XML/vehiculos.xml")
       cedula: v.getElementsByTagName("cedula")[0].textContent.trim(),
       usuario: v.getElementsByTagName("usuario")[0].textContent.trim()
     }));
-
-    console.log("Vehículos cargados desde XML:", vehiculos);
   })
   .catch(err => console.error("Error cargando XML:", err));
 
+// ===============================
+// Referencias
+// ===============================
 
-// ===============================
-// Referencias a los elementos
-// ===============================
 const buscar = document.getElementById("buscar");
 const btnVerificar = document.querySelector(".btn-verificar");
 const nombre = document.getElementById("nombreUsuario");
@@ -33,20 +31,21 @@ const accion = document.getElementById("accionDetectada");
 const form = document.querySelector(".control-form");
 const tabla = document.querySelector(".tabla-historial tbody");
 
-// Guardar si un vehículo está dentro o fuera
-const estado = {};
+// Estado de cada vehículo
+const estado = {}; // placa: true = dentro | false = fuera
 let encontrado = null;
 
-// Función para obtener fecha y hora actual
+// ===============================
+// Función hora
+// ===============================
 function obtenerFechaHora() {
   return new Date().toLocaleString();
 }
 
-
 // ===============================
 // Verificar vehículo
 // ===============================
-btnVerificar.onclick = function () {
+function verificarVehiculo() {
   const valor = buscar.value.trim();
 
   encontrado = vehiculos.find(v =>
@@ -59,14 +58,14 @@ btnVerificar.onclick = function () {
 
     const esIngreso = !estado[encontrado.placa];
     accion.value = esIngreso ? "Ingreso" : "Salida";
-
   } else {
     alert("❌ Vehículo o usuario no encontrado");
     form.reset();
     nombre.value = fechaHora.value = accion.value = "";
   }
-};
+}
 
+btnVerificar.onclick = verificarVehiculo;
 
 // ===============================
 // Registrar evento
@@ -86,19 +85,74 @@ form.onsubmit = function (e) {
   // Cambiar estado
   estado[placa] = tipo === "Ingreso";
 
-  // Agregar fila a la tabla
+  // Crear fila
   const fila = document.createElement("tr");
   fila.innerHTML = `
     <td>${placa}</td>
     <td>${usuario}</td>
     <td><span class="accion ${tipo.toLowerCase()}">${tipo}</span></td>
     <td>${momento}</td>
+    <td>${
+      tipo === "Ingreso"
+        ? `<button class="btn-finalizar-salida" data-placa="${placa}">Finalizar</button>`
+        : `—`
+    }</td>
   `;
 
   tabla.prepend(fila);
 
-  // Limpiar campos
+  // Asignar evento al botón de finalizar salida
+  if (tipo === "Ingreso") {
+    fila.querySelector(".btn-finalizar-salida").onclick = () => {
+      registrarSalidaDirecta(placa, usuario);
+    };
+  }
+
+  // Reset
   form.reset();
   nombre.value = fechaHora.value = accion.value = "";
   encontrado = null;
 };
+
+// ===============================
+// Finalizar salida desde tabla
+// ===============================
+function registrarSalidaDirecta(placa, usuario) {
+  const momento = obtenerFechaHora();
+
+  estado[placa] = false;
+
+  const fila = document.createElement("tr");
+  fila.innerHTML = `
+    <td>${placa}</td>
+    <td>${usuario}</td>
+    <td><span class="accion salida">Salida</span></td>
+    <td>${momento}</td>
+    <td>—</td>
+  `;
+
+  tabla.prepend(fila);
+
+  alert(`🚗 Salida registrada para ${usuario}`);
+}
+
+// ===============================
+// ENTER para verificar y registrar
+// ===============================
+
+// Primer ENTER → verificar
+buscar.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    e.preventDefault();
+    verificarVehiculo();
+    fechaHora.focus();
+  }
+});
+
+// Segundo ENTER → registrar
+form.addEventListener("keydown", (e) => {
+  if (e.key === "Enter" && e.target !== buscar) {
+    e.preventDefault();
+    form.requestSubmit();
+  }
+});

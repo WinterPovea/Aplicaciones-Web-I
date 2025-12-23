@@ -1,11 +1,10 @@
 /* ===============================
-   Control de Acceso Vehicular
+   Gestión de parqueaderos
    =============================== */
 
 .content-section {
   padding: 2rem;
 }
-
 /*Colores Títulos*/
 .content-section h2 {
   color: #2e7d32;
@@ -13,7 +12,7 @@
 }
 
 /* Formulario */
-.control-form {
+.parqueadero-form {
   background-color: #fff;
   padding: 1.5rem;
   border-radius: 12px;
@@ -32,24 +31,12 @@
   flex-direction: column;
 }
 
-.form-group.full-width {
-  grid-column: 1 / -1;
-}
-
 .form-group label {
   font-weight: 500;
   margin-bottom: 0.3rem;
 }
 
-.btn-finalizar-salida {
-    background-color: #d32f2f;
-    color: #fff;
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 0.9rem;
-}
+/*Color de campos sin enfocar*/
 .form-group input,
 .form-group select {
   padding: 0.6rem;
@@ -66,38 +53,13 @@
   box-shadow: 0 0 5px rgba(46,125,50,0.3);
 }
 
-/* Campo con botón "Verificar" */
-.input-with-btn {
-  display: flex;
-  gap: 0.5rem;
-}
-
-.input-with-btn input {
-  flex: 1;
-}
-
-.btn-verificar {
-  background-color: #1565c0;
-  color: white;
-  border: none;
-  padding: 0.6rem 1rem;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-.btn-verificar:hover {
-  background-color: #0d47a1;
-}
-
-/* Botones principales */
 .form-actions {
   display: flex;
   gap: 1rem;
   margin-top: 1.5rem;
 }
 
-.btn-registrar {
+.btn-guardar {
   background-color: #2e7d32;
   color: #fff;
   border: none;
@@ -107,7 +69,7 @@
   transition: background 0.3s;
 }
 
-.btn-registrar:hover {
+.btn-guardar:hover {
   background-color: #256628;
 }
 
@@ -124,7 +86,7 @@
 }
 
 /* Tabla */
-.tabla-historial {
+.tabla-parqueaderos {
   width: 100%;
   border-collapse: collapse;
   background-color: #fff;
@@ -133,48 +95,58 @@
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
-.tabla-historial th,
-.tabla-historial td {
+.tabla-parqueaderos th,
+.tabla-parqueaderos td {
   padding: 0.8rem 1rem;
   text-align: left;
   border-bottom: 1px solid #eee;
 }
 
-.tabla-historial th {
+.tabla-parqueaderos th {
   background-color: #2e7d32;
   color: #fff;
 }
 
-.accion {
+.estado {
   font-weight: bold;
   padding: 0.2rem 0.5rem;
   border-radius: 6px;
   font-size: 0.9rem;
 }
 
-.accion.ingreso {
+.estado.activo {
   background-color: #c8e6c9;
   color: #1b5e20;
 }
 
-.accion.salida {
-  background-color: #ffe0b2;
-  color: #e65100;
+.estado.inactivo {
+  background-color: #ffcdd2;
+  color: #b71c1c;
 }
 
-
-/* Adaptabilidad */
-@media (max-width: 600px) {
-  .form-actions {
-    flex-direction: column;
-  }
-
-  .input-with-btn {
-    flex-direction: column;
-  }
-
-  .btn-verificar {
-    width: 100%;
-  }
+.btn-editar,
+.btn-eliminar {
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  cursor: pointer;
+  color: white;
+  font-size: 0.85rem;
+  transition: background 0.3s;
 }
 
+.btn-editar {
+  background-color: #1565c0;
+}
+
+.btn-editar:hover {
+  background-color: #0d47a1;
+}
+
+.btn-eliminar {
+  background-color: #ac2f2f;
+}
+
+.btn-eliminar:hover {
+  background-color: #8a1c1c;
+}
