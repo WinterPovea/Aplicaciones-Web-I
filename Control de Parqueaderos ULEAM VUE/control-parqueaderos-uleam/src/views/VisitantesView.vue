@@ -47,7 +47,7 @@
           </div>
         </form>
 
-        <div class="historial-actions">
+        <div class="historial-actions" v-if="esAdministrador">
           <button type="button" class="btn-historial" @click="descargarHistorial">
             📥 Descargar historial JSON
           </button>
@@ -85,10 +85,18 @@
 </template>
 
 <script setup>
-import { ref, reactive, onMounted } from 'vue'
+import { ref, reactive, onMounted, computed } from 'vue'
+import { useAuthStore } from '@/stores/auth'
 import Sidebar from '@/components/dashboard/Sidebar.vue'
 import Topbar from '@/components/dashboard/Topbar.vue'
 import { getVisitantesActivos, saveVisitantesActivos, getHistorialVisitantes, saveHistorialVisitantes } from '@/services/visitantesService.js'
+// 🔐 Auth / Roles
+const authStore = useAuthStore()
+
+const esAdministrador = computed(() => {
+  return authStore.user?.rol === 'administrador'
+})
+
 
 // Datos reactivos
 const visitantesActivos = ref([])
@@ -201,12 +209,22 @@ function finalizarTodas() {
 
 // Descargar historial
 function descargarHistorial() {
-  const blob = new Blob([JSON.stringify(historial.value, null, 2)], { type: 'application/json' })
+  if (!esAdministrador.value) {
+    alert('Acceso denegado: solo administradores')
+    return
+  }
+
+  const blob = new Blob(
+    [JSON.stringify(historial.value, null, 2)],
+    { type: 'application/json' }
+  )
+
   const a = document.createElement('a')
   a.href = URL.createObjectURL(blob)
   a.download = 'historialVisitantes.json'
   a.click()
 }
+
 </script>
 
 <style src="@/assets/css/RegistroVisitantes.css"></style>

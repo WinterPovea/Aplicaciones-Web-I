@@ -60,7 +60,7 @@
               <td><span :class="['accion', evento.tipo.toLowerCase()]">{{ evento.tipo }}</span></td>
               <td>{{ evento.fechaHora }}</td>
               <td>
-                <button v-if="evento.tipo === 'Ingreso'" class="btn-finalizar-salida" @click="registrarSalidaDirecta(evento.placa, evento.usuario)">Finalizar</button>
+                <button v-if="evento.tipo === 'Ingreso' && !evento.finalizado" class="btn-finalizar-salida" @click="registrarSalidaDirecta(evento, index)">Finalizar</button>
                 <span v-else>—</span>
               </td>
             </tr>
@@ -72,10 +72,14 @@
 </template>
 
 <script setup>
-import { ref, reactive } from 'vue'
+const HISTORIAL_KEY = 'historialAccesos'
+const ESTADO_KEY = 'estadoVehiculos'
+
+import { ref, reactive, onMounted, watch } from 'vue'
 import Sidebar from '@/components/dashboard/Sidebar.vue'
 import Topbar from '@/components/dashboard/Topbar.vue'
-import { getVehiculos } from '@/services/vehiculosService.js'
+import { getUsuariosAutorizados } from '@/services/usuariosService.js'
+
 
 // Datos reactivos
 const buscar = ref('')
@@ -87,7 +91,34 @@ const estado = reactive({}) // placa: true = dentro | false = fuera
 let encontrado = null
 
 // Vehículos desde servicio
-const vehiculos = getVehiculos()
+const usuariosService = getUsuariosAutorizados()
+
+// Guardar en localStorage al cambiar historial o estado
+onMounted(() => {
+  const historialGuardado = localStorage.getItem(HISTORIAL_KEY)
+  const estadoGuardado = localStorage.getItem(ESTADO_KEY)
+
+  if (historialGuardado) {
+    historial.value = JSON.parse(historialGuardado)
+  }
+
+  if (estadoGuardado) {
+    Object.assign(estado, JSON.parse(estadoGuardado))
+  }
+})
+
+// Guardiar cambios en historial
+watch(historial, (nuevoHistorial) => {
+  localStorage.setItem(HISTORIAL_KEY, JSON.stringify(nuevoHistorial))
+}, { deep: true })
+
+// Guardiar cambios en estado
+watch(estado, (nuevoEstado) => {
+  localStorage.setItem(ESTADO_KEY, JSON.stringify(nuevoEstado))
+}, { deep: true })
+
+
+
 
 // Función para obtener fecha y hora
 function obtenerFechaHora() {
@@ -97,10 +128,10 @@ function obtenerFechaHora() {
 // Verificar vehículo
 function verificarVehiculo() {
   const valor = buscar.value.trim()
-  encontrado = vehiculos.find(v => v.placa === valor || v.cedula === valor)
+  encontrado = usuariosService.find(u => u.placa.toUpperCase() === valor.toUpperCase() || u.cedula === valor)
 
   if (encontrado) {
-    nombreUsuario.value = encontrado.usuario
+    nombreUsuario.value = encontrado.nombre
     fechaHora.value = obtenerFechaHora()
     const esIngreso = !estado[encontrado.placa]
     accionDetectada.value = esIngreso ? 'Ingreso' : 'Salida'
@@ -117,7 +148,8 @@ function registrarEvento() {
     return
   }
 
-  const { placa, usuario } = encontrado
+  const placa= encontrado.placa
+  const usuario = encontrado.nombre
   const tipo = accionDetectada.value
   const momento = fechaHora.value
 
@@ -129,7 +161,8 @@ function registrarEvento() {
     placa,
     usuario,
     tipo,
-    fechaHora: momento
+    fechaHora: momento,
+    finalizado: false
   })
 
   // Reset
@@ -146,19 +179,26 @@ function cancelar() {
 }
 
 // Registrar salida directa desde tabla
-function registrarSalidaDirecta(placa, usuario) {
-  const momento = obtenerFechaHora()
-  estado[placa] = false
+function registrarSalidaDirecta(evento, index) {
+  if (evento.finalizado) return // Seguridad extra
 
+  const momento = obtenerFechaHora()
+  estado[evento.placa] = false
+
+  // Marcar el ingreso como finalizado
+  historial.value[index].finalizado = true
+
+  // Registrar la salida como nuevo evento
   historial.value.unshift({
-    placa,
-    usuario,
+    placa: evento.placa,
+    usuario: evento.usuario,
     tipo: 'Salida',
     fechaHora: momento
   })
 
-  alert(`🚗 Salida registrada para ${usuario}`)
+  alert(`🚗 Salida registrada para ${evento.usuario}`)
 }
+
 </script>
 
 <style src="@/assets/css/controlAcceso.css"></style>

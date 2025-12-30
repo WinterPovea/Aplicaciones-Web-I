@@ -17,26 +17,26 @@ const routes = [
   {
     path: '/accesos',
     name: 'accesos',
-    component: () => import('@/views/AccesosView.vue'), // Crea este archivo más tarde
+    component: () => import('@/views/AccesosView.vue'), 
     meta: { requiresAuth: true, roles: ['guardia'] }
   },
   {
     path: '/parqueaderos',
     name: 'parqueaderos',
-    component: () => import('@/views/ParqueaderosView.vue'), // Crea este archivo más tarde
-    meta: { requiresAuth: true, roles: ['administrador', 'guardia'] }
+    component: () => import('@/views/ParqueaderosView.vue'), 
+    meta: { requiresAuth: true, roles: ['administrador'] }
   },
   {
     path: '/usuarios',
     name: 'usuarios',
-    component: () => import('@/views/UsuariosView.vue'), // Crea este archivo más tarde
+    component: () => import('@/views/UsuariosView.vue'), 
     meta: { requiresAuth: true, roles: ['administrador'] }
   },
   {
     path: '/visitantes',
     name: 'visitantes',
-    component: () => import('@/views/VisitantesView.vue'), // Crea este archivo más tarde
-    meta: { requiresAuth: true, roles: ['guardia'] }
+    component: () => import('@/views/VisitantesView.vue'), 
+    meta: { requiresAuth: true, roles: ['administrador', 'guardia'] }
   }
 ]
 

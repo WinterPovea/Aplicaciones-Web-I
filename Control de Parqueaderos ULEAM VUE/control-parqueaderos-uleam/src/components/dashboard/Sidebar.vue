@@ -9,9 +9,9 @@
       <ul>
         <li><RouterLink to="/dashboard">🏠 Inicio</RouterLink></li>
         <li v-if="user?.rol === 'guardia'"><RouterLink to="/accesos">🚗 Control de Acceso</RouterLink></li>
-        <li><RouterLink to="/parqueaderos">🅿️ Parqueaderos</RouterLink></li>
+        <li v-if="user?.rol === 'administrador'"><RouterLink to="/parqueaderos">🅿️ Parqueaderos</RouterLink></li>
         <li v-if="user?.rol === 'administrador'"><RouterLink to="/usuarios">👥 Usuarios</RouterLink></li>
-        <li v-if="user?.rol === 'guardia'"><RouterLink to="/visitantes">🧍‍♂️ Visitantes</RouterLink></li>
+        <li><RouterLink to="/visitantes">🧍‍♂️ Visitantes</RouterLink></li>
       </ul>
     </nav>
   </aside>
