@@ -90,7 +90,7 @@ import { useAuthStore } from '@/stores/auth'
 import Sidebar from '@/components/dashboard/Sidebar.vue'
 import Topbar from '@/components/dashboard/Topbar.vue'
 import { getVisitantesActivos, saveVisitantesActivos, getHistorialVisitantes, saveHistorialVisitantes } from '@/services/visitantesService.js'
-// 🔐 Auth / Roles
+// Auth / Roles
 const authStore = useAuthStore()
 
 const esAdministrador = computed(() => {
@@ -215,12 +215,12 @@ function descargarHistorial() {
   }
 
   const blob = new Blob(
-    [JSON.stringify(historial.value, null, 2)],
+    [JSON.stringify(historial.value, null, 2)], //datos reales sin filtros formato legible
     { type: 'application/json' }
   )
 
   const a = document.createElement('a')
-  a.href = URL.createObjectURL(blob)
+  a.href = URL.createObjectURL(blob) // Crear URL temporal
   a.download = 'historialVisitantes.json'
   a.click()
 }

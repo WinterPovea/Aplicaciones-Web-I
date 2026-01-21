@@ -74,5 +74,5 @@ export function getParqueaderos() {
 
 
 export function saveParqueaderos(parqueaderos) {
-  localStorage.setItem(PARQUEADEROS_KEY, JSON.stringify(parqueaderos));
+  localStorage.setItem(PARQUEADEROS_KEY, JSON.stringify(parqueaderos)); //stringify convierte JS a texto
 }

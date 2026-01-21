@@ -1,5 +1,5 @@
 export function validarCredenciales(usuario, password) {
-  // Hardcodeado para ejemplo; expande a una base de datos
+  // Hardcodeado (escritos en el codigo) para ejemplo; expande a una base de datos
   const usuarios = {
     'Winter Povea': { password: '131705', rol: 'administrador' },
     'Guardia Juan': { password: '1234', rol: 'guardia' },
